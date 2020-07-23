@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+            {% if post.author.profile.image.url %}
+            <img class='rounded-circle article-img' src="{{ post.author.profile.image.url}}" alt="none">
+            {% endif %}
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted| date:'F d, Y'}}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'myblog:detail' post.id %}">{{ post.title| title }}</a></h2> <!--# the post.id, the post word in this came from the for loop-->
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+
+
